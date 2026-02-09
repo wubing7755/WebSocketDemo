@@ -1,9 +1,299 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<PageTitle>WebSocket Demo - 首页</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="home-container">
+    <div class="hero-section">
+        <h1>WebSocket 聊天室演示</h1>
+        <p class="lead">基于 Blazor WebAssembly 的实时聊天应用</p>
+        <div class="project-description">
+            <p>这个演示项目展示了如何使用 WebSocket 协议实现实时双向通信。</p>
+            <p>项目使用 ASP.NET Core 服务器处理 WebSocket 连接，Blazor WebAssembly 客户端提供交互式用户界面。</p>
+        </div>
 
-Welcome to your new app.
+        <div class="features">
+            <h3>功能特性</h3>
+            <ul>
+                <li>实时消息发送和接收</li>
+                <li>在线用户列表显示</li>
+                <li>用户加入/离开通知</li>
+                <li>自动重连机制</li>
+                <li>响应式设计，支持移动设备</li>
+            </ul>
+        </div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+        <div class="action-buttons">
+            <a href="/chatroom" class="btn btn-primary btn-lg">
+                <span class="button-icon">💬</span>
+                进入聊天室
+            </a>
+            <button class="btn btn-outline-secondary btn-lg" @onclick="NavigateToGitHub">
+                <span class="button-icon">📚</span>
+                项目文档
+            </button>
+        </div>
+
+        <div class="instructions">
+            <h4>使用说明</h4>
+            <ol>
+                <li>点击"进入聊天室"按钮</li>
+                <li>输入用户名（可选，将自动生成随机用户名）</li>
+                <li>选择服务器地址（默认使用本地服务器）</li>
+                <li>点击"连接"开始聊天</li>
+                <li>在底部输入框输入消息，按Enter或点击"发送"按钮发送消息</li>
+            </ol>
+
+            <div class="server-info">
+                <h5>服务器状态</h5>
+                <p>确保服务器正在运行：</p>
+                <code>dotnet run --project Server</code>
+                <p>默认服务器地址：</p>
+                <ul>
+                    <li><strong>HTTP:</strong> <code>ws://localhost:5015/ws</code></li>
+                    <li><strong>HTTPS:</strong> <code>wss://localhost:7235/ws</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="/counter" class="nav-link">计数器示例</a>
+            <a href="/fetchdata" class="nav-link">天气预报示例</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private async Task NavigateToGitHub()
+    {
+        // 这里添加导航到GitHub的代码
+
+        await Task.CompletedTask;
+    }
+}
+
+<style>
+    .home-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .hero-section h1 {
+        color: #2c3e50;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        color: #6c757d;
+        margin-bottom: 2rem;
+    }
+
+    .project-description {
+        text-align: left;
+        margin: 2rem auto;
+        max-width: 800px;
+        line-height: 1.6;
+    }
+
+    .features {
+        text-align: left;
+        margin: 2rem auto;
+        max-width: 800px;
+    }
+
+    .features h3 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .features ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .features li {
+        padding: 0.5rem 0;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .features li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .action-buttons {
+        margin: 3rem 0;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-primary {
+        background-color: #4a6ee0;
+        border-color: #4a6ee0;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #3a5ed0;
+        border-color: #3a5ed0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(74, 110, 224, 0.3);
+    }
+
+    .btn-outline-secondary {
+        color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .button-icon {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .instructions {
+        text-align: left;
+        margin: 3rem auto;
+        max-width: 800px;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .instructions h4 {
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .instructions ol {
+        padding-left: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .instructions li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+    }
+
+    .server-info {
+        background-color: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin-top: 2rem;
+    }
+
+    .server-info h5 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .server-info code {
+        background-color: #e9ecef;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        color: #d63384;
+        display: inline-block;
+        margin: 0.5rem 0;
+    }
+
+    .server-info ul {
+        padding-left: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .server-info li {
+        margin-bottom: 0.5rem;
+    }
+
+    .navigation-links {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e9ecef;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        color: #4a6ee0;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+        background-color: #f0f2f5;
+        text-decoration: underline;
+    }
+
+    @@media (max-width: 768px) {
+        .hero-section {
+            padding: 1.5rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2rem;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 1rem;
+        }
+
+        .navigation-links {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+</style>
