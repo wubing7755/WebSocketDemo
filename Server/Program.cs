@@ -2,8 +2,6 @@ using WebSocketDemo.Server.Middleware;
 using WebSocketDemo.Server.Services;
 using WebSocketDemo.Shared.Services;
 
-
-
 namespace WebSocketDemo.Server;
 
 public class Program
@@ -22,10 +20,13 @@ public class Program
         {
             options.AddPolicy("WebSocketPolicy", policy =>
             {
-                policy.AllowAnyOrigin()
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
-                // 移除了 AllowCredentials()，因为它不能与 AllowAnyOrigin() 同时使用
+                policy.WithOrigins(
+                    "https://localhost:7235",
+                    "http://localhost:5015"
+                 )
+                .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                .WithHeaders("Content-Type", "Authorization", "X-Requested-With", "x-custom-header")
+                .AllowCredentials();
             });
         });
 

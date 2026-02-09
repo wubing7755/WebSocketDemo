@@ -16,7 +16,7 @@ public class Program
         // 注册 HttpClient
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-        // 注册 WebSocket 服务（单例模式，因为需要保持连接状态）
+        // 注册 WebSocket 服务
         builder.Services.AddSingleton<IWebSocketService, WebSocketService>();
 
         // 注册本地存储服务
@@ -24,8 +24,6 @@ public class Program
 
         // 注册日志服务
         builder.Services.AddSingleton<IConsoleLogger, ConsoleLogger>();
-
-
 
         await builder.Build().RunAsync();
     }
