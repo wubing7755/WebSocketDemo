@@ -22,9 +22,40 @@
 ## 功能实现步骤
 
 ### 第 1 步：创建共享数据模型
-- [ ] 在 `Shared` 项目中创建聊天消息模型
-- [ ] 创建用户连接信息模型
-- [ ] 定义 WebSocket 消息类型枚举
+- [x] 在 `Shared` 项目中创建聊天消息模型
+- [x] 创建用户连接信息模型
+- [x] 定义 WebSocket 消息类型枚举
+
+#### 功能要求
+1. **聊天消息模型 (`ChatMessage.cs`)**
+   - 包含以下属性：
+     - `MessageId` (Guid)：消息唯一标识符
+     - `UserId` (string)：发送者用户ID
+     - `UserName` (string)：发送者昵称
+     - `Content` (string)：消息内容
+     - `Timestamp` (DateTime)：消息发送时间
+     - `MessageType` (MessageType)：消息类型（文本、系统通知等）
+
+2. **用户连接信息模型 (`UserInfo.cs`)**
+   - 包含以下属性：
+     - `UserId` (string)：用户唯一标识符
+     - `UserName` (string)：用户昵称
+     - `ConnectionId` (string)：WebSocket连接ID
+     - `IsOnline` (bool)：用户在线状态
+     - `LastActiveTime` (DateTime)：最后活动时间
+
+3. **WebSocket消息类型枚举 (`MessageType.cs`)**
+   - 定义以下消息类型：
+     - `TextMessage`：普通文本消息
+     - `UserJoined`：用户加入聊天室
+     - `UserLeft`：用户离开聊天室
+     - `SystemNotification`：系统通知
+     - `Error`：错误消息
+
+#### 注意事项
+- 所有模型类都应包含适当的构造函数和属性初始化
+- 考虑使用 `[Serializable]` 特性以支持JSON序列化
+- 模型设计应简洁，避免过度复杂化，满足基本聊天室需求即可
 
 ### 第 2 步：实现服务器端 WebSocket 处理器
 - [ ] 在 `Server` 项目中创建 WebSocket 中间件或控制器
@@ -99,7 +130,7 @@ WebSocketDemo/
 | 日期 | 步骤 | 状态 | 备注 |
 |------|------|------|------|
 | - | 项目初始化 | ✅ 完成 | 创建基础项目结构 |
-| - | 第 1 步：创建共享数据模型 | ⬜ 待开始 | |
+| 2026-02-09 | 第 1 步：创建共享数据模型 | ✅ 完成 | 创建了 ChatMessage.cs、UserInfo.cs 和 MessageType.cs 模型 |
 | - | 第 2 步：实现服务器端 WebSocket 处理器 | ⬜ 待开始 | |
 | - | 第 3 步：实现客户端 WebSocket 服务 | ⬜ 待开始 | |
 | - | 第 4 步：创建聊天室用户界面 | ⬜ 待开始 | |
